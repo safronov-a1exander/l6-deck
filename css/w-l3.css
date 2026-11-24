@@ -1,0 +1,32 @@
+/* Л3 · задачки «что выведется», цепочка слоёв, очередь событий */
+
+/* задачка: код слева, ответ справа по шагу */
+.pz{display:grid;grid-template-columns:1.35fr 1fr;gap:36px;align-items:start}
+.pz .code pre{font-size:27px;line-height:40px}
+.pz-ans{background:var(--card);border:1.5px solid rgba(237,106,37,.55);border-radius:24px;padding:30px 34px;position:relative;display:flex;flex-direction:column;gap:20px}
+.pz-ans .cap{position:absolute;top:-16px;left:28px;background:var(--bg);padding:0 12px;font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.pz-ans .out{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:34px;line-height:46px;color:#fff;white-space:pre-line}
+.pz-ans p{font-size:25px;line-height:35px;color:var(--g3)}
+.pz-q{font-size:26px;line-height:34px;color:var(--muted);margin-top:22px}
+
+/* цепочка слоёв */
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;align-items:stretch}
+.chain .card{padding:28px 22px;min-height:300px;display:flex;flex-direction:column;gap:10px;position:relative}
+.chain .card h3{font-size:24px;line-height:30px}
+.chain .card p{font-size:23px;line-height:31px}
+.chain .card .no{font-size:20px;line-height:27px;color:var(--muted);margin-top:auto}
+.chain .card:not(:last-child)::after{content:'→';position:absolute;right:-17px;top:30px;font-size:28px;color:var(--accent)}
+.chain .card.on{border-color:var(--accent);box-shadow:0 0 36px rgba(237,106,37,.3)}
+
+/* очередь событий */
+.l3loop{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+.l3loop .card{display:flex;flex-direction:column;gap:12px}
+.l3loop .card h3{color:var(--accent)}
+.l3loop .it{font-family:ui-monospace,Consolas,monospace;font-size:21px;line-height:30px;color:var(--g3)}
+.rule{font-size:30px;line-height:42px;padding:22px 30px;border-radius:20px;background:rgba(237,106,37,.14);border:1.5px solid rgba(237,106,37,.5)}
+
+/* таблица «что меняем» */
+.tbl{width:100%;border-collapse:collapse;font-size:25px;line-height:34px}
+.tbl td,.tbl th{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.12);text-align:left;vertical-align:top}
+.tbl th{color:var(--muted);font-weight:500;font-size:21px;letter-spacing:.06em;text-transform:uppercase}
+.tbl td:first-child{color:var(--g3)}

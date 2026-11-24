@@ -1,0 +1,62 @@
+/* 11 teams diagram */
+.teams{position:absolute;inset:0}
+.teams svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.flow{fill:none;stroke:var(--accent);stroke-width:3;stroke-dasharray:10 12;animation:dash 1.1s linear infinite}
+.flow.w{stroke:rgba(255,255,255,.55)}
+@keyframes dash{to{stroke-dashoffset:-22}}
+.tt{position:absolute;left:0;width:420px;height:170px;padding:28px 32px}
+.tt h3{font-size:26px}
+.tt p{margin-top:14px !important}
+.hub{position:absolute;left:640px;top:170px;width:400px;height:360px;border:3px solid var(--accent);border-radius:44px;display:grid;place-items:center;text-align:center;
+  background:rgba(237,106,37,.08);animation:hub 3s ease-in-out infinite}
+@keyframes hub{50%{box-shadow:0 0 90px -10px rgba(237,106,37,.6)}}
+.hub h3{font-size:40px;line-height:48px}
+.hub p{margin-top:16px;font-size:24px;line-height:32px;color:var(--muted)}
+.pf{position:absolute;left:1260px;top:230px;width:420px;height:240px}
+.flabel{position:absolute;font-size:22px;line-height:28px;color:var(--g3);white-space:nowrap}
+.loopnote{position:absolute;left:520px;top:690px;width:640px;text-align:center}
+
+/* 12 conveyor */
+.conv{display:flex;gap:14px;margin:40px 0 34px}
+.conv i{flex:1;height:84px;border-radius:14px;transform:skewX(-22deg);background:rgba(255,255,255,.1);display:grid;place-items:center;
+  font-family:"Druk";font-style:normal;font-size:28px;transition:background .35s}
+.conv i b{transform:skewX(22deg);font-weight:500}
+.conv i.is-on{background:linear-gradient(90deg,var(--accent),var(--g2))}
+
+/* 13 stats */
+.stats{grid-template-columns:repeat(2,1fr)}
+.stats .card{min-height:250px;display:flex;flex-direction:column;justify-content:space-between}
+.stats .stat{font-size:78px}
+.stats .stat .accent{color:var(--accent)}
+
+/* 14 roles matrix */
+.rm{display:grid;grid-template-columns:1fr 1fr;gap:24px 32px}
+.rm .colh{font-family:"Druk";font-size:26px;text-transform:uppercase;color:var(--g3);padding-left:6px}
+.rm .card{min-height:170px}
+.rm .card h3{font-size:30px}
+.rm .en{font-family:ui-monospace,Menlo,monospace;font-size:20px;color:var(--muted);margin-top:10px}
+.rm .card .more p{margin-top:18px;font-size:24px;line-height:32px;color:var(--g3)}
+.reg{display:flex;gap:24px;margin-top:40px;align-items:center}
+.reg .term{height:64px;font-size:26px;padding:0 28px}
+.reg .term b{color:var(--accent);margin-left:10px}
+
+/* 15-17 role cards */
+.role{display:grid;grid-template-columns:900px 1fr;gap:64px;align-items:start}
+.role .label{margin-bottom:10px}
+.role .blk+.blk{margin-top:36px}
+.role .goal{font-size:34px;line-height:46px}
+.errs{border-color:rgba(237,106,37,.55)}
+.errs ul{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:22px}
+.errs li{display:flex;gap:18px;font-size:27px;line-height:37px;cursor:pointer;transition:opacity .3s,transform .3s}
+.errs li::before{content:"✕";color:var(--accent);font-weight:500;flex:none;transition:transform .4s var(--pop)}
+.errs li:hover{transform:translateX(8px)}
+.errs li:hover::before{transform:rotate(90deg) scale(1.3)}
+.ghost{position:absolute;right:-20px;bottom:-60px;font-family:"Druk";font-size:360px;line-height:1;color:#fff;opacity:.04;pointer-events:none}
+.exs{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+
+/* 18 lessons */
+.lessons{display:flex;flex-direction:column;gap:22px}
+.lesson{display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;padding:26px 30px}
+.lesson p{font-size:24px !important;line-height:33px !important;margin:0 !important}
+.lesson .was{color:var(--muted)}
+.lesson .arr{text-align:center;font-family:"Druk";color:var(--accent);font-size:34px}

@@ -1,0 +1,107 @@
+[data-a=fade]{transform:none}
+
+/* 01 hero mark */
+.slide.hero .body{position:static}
+.mark{position:absolute;right:-40px;top:390px;width:600px;height:552px;pointer-events:none}
+.mark path{fill:#fff;opacity:0;transform:translateX(260px);transition:opacity 1s var(--ease) var(--d),transform 1.4s var(--ease) var(--d)}
+.play .mark path{opacity:.95;transform:none}
+.mark svg{width:100%;height:100%;overflow:visible;animation:float 7s ease-in-out 1.6s infinite alternate}
+@keyframes float{to{transform:translateY(-26px) rotate(-2deg)}}
+.hero-meta{position:absolute;left:0;bottom:40px}
+
+/* 02 stripes list */
+.srows{display:flex;flex-direction:column;gap:26px}
+.srow{display:flex;align-items:center;gap:56px}
+.srow .stripe{width:150px;height:96px;display:grid;place-items:center;font-family:"Druk";font-size:44px;flex:none}
+.srow .lead{max-width:1250px}
+
+/* 03 map */
+.map{grid-template-columns:repeat(4,1fr)}
+.map .card{min-height:190px;display:flex;flex-direction:column;justify-content:space-between;cursor:default}
+.map .top{display:flex;align-items:center;justify-content:space-between;font-size:28px}
+.map .name{font-weight:500;font-size:30px;line-height:36px;margin-top:34px}
+.map .card.is-on{transform:translateY(-8px);box-shadow:0 30px 70px -25px rgba(237,106,37,.7)}
+.bar{display:flex;height:22px;border-radius:11px;overflow:hidden;margin-top:56px;gap:4px}
+.bar i{display:block;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) var(--d),filter .3s}
+.bar i.q{background:rgba(255,255,255,.25)}
+.play .bar i{transform:none}
+.bar i.is-on{filter:brightness(1.4)}
+.bar-legend{display:flex;justify-content:space-between;margin-top:18px}
+
+/* 04 agent loop */
+.loop{position:absolute;right:-40px;top:-40px;width:800px;height:760px}
+.loop svg{position:absolute;inset:0}
+.loop .ring{fill:none;stroke:rgba(255,255,255,.25);stroke-width:2;stroke-dasharray:6 10}
+.orbit{transform-origin:400px 380px;animation:spin 7.5s linear infinite}
+.loop.paused .orbit,.loop.paused .ring-spin{animation-play-state:paused}
+.ring-spin{transform-origin:400px 380px;animation:spin 60s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.node{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--bg);border:3px solid #fff;transition:background .3s,transform .3s var(--pop),border-color .3s}
+.node.is-on{background:var(--accent);border-color:var(--accent);transform:scale(1.5)}
+.nlabel{position:absolute;width:240px;margin-left:-120px;transform:translateY(-50%);text-align:center;font-size:25px;line-height:31px;transition:color .3s}
+.nlabel.is-on{color:var(--g3)}
+.stopbtn{position:absolute;left:400px;top:380px;width:250px;height:250px;margin:-125px 0 0 -125px;border-radius:50%;border:2px solid var(--card-border);
+  background:rgba(255,255,255,.04);display:grid;place-items:center;text-align:center;cursor:pointer;transition:all .4s var(--ease)}
+.stopbtn b{font-family:"Druk";font-size:34px;display:block}
+.stopbtn span{font-size:20px;line-height:26px;color:var(--muted);display:block;margin-top:8px;padding:0 30px}
+.stopbtn:hover{border-color:var(--accent);transform:scale(1.04)}
+.loop.paused .stopbtn{background:var(--accent);border-color:var(--accent)}
+.loop.paused .stopbtn span{color:#fff}
+
+/* 05 nested */
+.nest{border:2px solid var(--accent);border-radius:36px;padding:44px 48px 52px;cursor:pointer;transition:all .45s var(--ease);position:relative}
+.nest .nest{border-color:rgba(255,255,255,.5);margin-top:40px}
+.nest .nest .nest{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.04);min-height:150px}
+.nest-h{display:flex;align-items:baseline;gap:28px}
+.nest-h h3{flex:none}
+.nest-h p{font-size:26px;line-height:34px;color:var(--muted);transition:color .3s}
+.nest.is-on>.nest-h p{color:#fff}
+.nest.is-on{box-shadow:inset 0 0 0 2px var(--accent),0 0 60px -10px rgba(237,106,37,.45)}
+.parts{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px;align-items:center}
+
+/* 06 cards num */
+.ncard .num{font-family:"Druk";font-size:44px;color:var(--accent);line-height:1}
+.ncard p{margin-top:26px;font-size:30px;line-height:40px}
+
+/* 07 modes */
+.track{position:relative;height:6px;border-radius:3px;background:linear-gradient(90deg,rgba(255,255,255,.15),var(--accent));margin:10px 0 64px}
+.track .knob{position:absolute;top:50%;left:var(--k,50%);width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;background:#fff;box-shadow:0 0 0 8px rgba(237,106,37,.35);transition:left .6s var(--pop)}
+.track-l{display:flex;justify-content:space-between;margin-top:-50px;margin-bottom:40px}
+.mode{min-height:420px;opacity:.55}
+.mode.is-on{opacity:1}
+.mode .tag{display:inline-block;margin-top:26px;padding:6px 16px;border-radius:999px;background:var(--accent);font-size:20px;font-weight:500;opacity:0;transition:opacity .3s}
+.mode.is-on .tag{opacity:1}
+.mode .use{margin-top:22px;color:var(--g3)}
+
+/* 08 not equal */
+.quote{font-size:32px;line-height:46px}
+.cmp{display:grid;grid-template-columns:1fr 170px 1fr;align-items:center;margin-top:44px}
+.neq{font-family:"Druk";font-size:150px;color:var(--accent);text-align:center;line-height:1}
+.cmp ul{list-style:none;display:flex;flex-direction:column;gap:16px;margin-top:26px}
+.cmp li{font-size:30px;line-height:40px;display:flex;gap:18px;align-items:center}
+.cmp .say li::before{content:"“";font-family:"Druk";color:var(--muted)}
+.cmp .ok li::before{content:"";width:26px;height:26px;border-radius:50%;background:var(--accent);flex:none;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='13'/%3E%3C/svg%3E");}
+
+/* 09 cases */
+.case{display:grid;grid-template-columns:1fr 150px 1fr;align-items:stretch}
+.case+.case{margin-top:32px}
+.case .arrow{display:grid;place-items:center}
+.case .arrow svg{width:110px;height:40px;overflow:visible}
+.case .fix{border-color:rgba(237,106,37,.7);display:flex;gap:26px;align-items:flex-start}
+.lock{stroke:var(--accent);fill:none;stroke-width:2.5;stroke-linecap:round}
+.fix .lock{width:52px;height:52px}
+.label{font-size:22px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;font-weight:500}
+
+/* 06 brains / hands / job description */
+.formula{display:flex;gap:22px;align-items:baseline;flex-wrap:wrap;font-family:"Druk";font-size:40px;line-height:52px;text-transform:uppercase;margin-bottom:44px}
+.formula b{font-weight:500}
+.formula span{color:var(--muted);display:inline-block}
+.brh .card{min-height:440px}
+.brh .ico{display:block;width:84px;height:84px;margin-bottom:24px;stroke:var(--accent);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--pop)}
+.brh .ico path{stroke-dasharray:1;stroke-dashoffset:1}
+.play .brh .ico path{animation:drawp 1.8s var(--ease) 1.2s forwards}
+@keyframes drawp{to{stroke-dashoffset:0}}
+.brh .card:hover .ico{transform:scale(1.1) rotate(-5deg)}
+.brh .card p{margin-top:18px !important}
+.brh .ex{color:var(--g3);font-size:24px !important;line-height:34px !important}

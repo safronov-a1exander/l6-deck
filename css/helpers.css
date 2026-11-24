@@ -1,0 +1,63 @@
+/* Style helpers shared by all styles (references/styles.md). Base look is Графит; theme-<id>.css restyles them. */
+
+/* grey tail of a list line: «UI — 93%, <span class="tail">132 вакансии</span>» */
+.tail{color:var(--muted)}
+
+/* titles never wider than the stage: the engine sets --tc = longest title line in characters (Druk Wide ≈ .92 em per char) */
+.title{font-size:min(68px,calc(1680px / (var(--tc,1) * .92)))}
+.title--hero{font-size:min(82px,calc(1680px / (var(--tc,1) * .92)))}
+
+/* floating objects placed into free space by js/place.js (hero mark, style decoration) */
+/* measuring is synchronous (no paint in between), so inactive slides can be made visible for it */
+.placing [data-a],.placing [data-step],.placing .title .w>i,.placing .slide{transform:none!important;transition:none!important}
+.placing .slide{visibility:visible!important}
+.deco-layer{position:absolute;pointer-events:none;background:var(--deco) center/contain no-repeat;opacity:0;transition:opacity .9s var(--ease) .3s}
+.play>.deco-layer{opacity:var(--deco-opacity,1)}
+
+/* ?final — static final state for PDF and screenshots (scripts/build-pdf.sh) */
+.final *,.final *::before,.final *::after{transition:none!important;animation:none!important}
+.final .hud,.final .hint,.final .progress,.final .notes,.final .menu{display:none!important}
+
+/* hero slides: the meta line sits under the content and never overlaps a long title */
+.slide.hero .body{display:flex;flex-direction:column}
+.slide.hero .hero-meta{position:static;margin-top:auto;padding-top:28px}
+
+/* highlighted words inside a title: title: 'ИИ <span class="hl">не объединяет</span> профессии' */
+.hl{color:var(--accent)}
+
+/* person row at the bottom of a card: <div class="who"><span class="ava"></span>Имя Фамилия</div> */
+.who{display:flex;align-items:center;gap:14px;margin-top:36px;color:var(--muted);font-size:24px}
+.who .ava{width:44px;height:44px;flex:none;border-radius:50%;background:var(--card-border)}
+.card .stat+p,.card .stat+h3{margin-top:18px}
+
+/* small category label */
+.tag{display:inline-flex;align-items:center;height:46px;padding:0 22px;border-radius:999px;background:var(--accent);color:#fff;
+  font-family:"Druk",Arial,sans-serif;font-weight:500;font-size:18px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+
+/* placeholder until the user gives a real photo */
+.photo{display:grid;place-items:center;min-height:420px;padding:24px;border:2px dashed var(--card-border);border-radius:24px;
+  color:var(--muted);font-size:24px;text-align:center}
+
+/* phone screenshot frame: <div class="shot"><img src="assets/…"></div> */
+.shot{width:300px;aspect-ratio:9/19;flex:none;overflow:hidden;border-radius:32px;background:var(--card);border:1.5px solid var(--card-border);
+  box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+.shot img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* full-bleed section divider: cls: 'divider' (or 'divider alt'), title only */
+.slide.divider::before,.slide.cover::before{content:"";position:absolute;inset:0}
+.slide.divider::before{background:var(--divider,var(--accent))}
+.slide.divider.alt::before{background:var(--divider-alt,var(--g1))}
+.slide.divider .inner{justify-content:center;align-items:center;text-align:center}
+.slide.divider .body,.slide.divider .logo{display:none}
+.slide.divider .title,.slide.cover .title,.slide.cover .subtitle{color:#fff}
+
+/* one big centred phrase on the plain background: cls: 'statement', title only */
+.slide.statement .inner{justify-content:center;align-items:center;text-align:center}
+.slide.statement .body{display:none}
+
+/* full-bleed gradient cover: cls: 'cover' with hero: true */
+.slide.cover::before{background:var(--cover,linear-gradient(115deg,#ff0a06,#ffa35d))}
+
+/* pixel stair-step decoration, bottom-right of the body: <div class="pixels"></div> */
+.pixels{--px:var(--pixel,var(--accent));position:absolute;right:-120px;bottom:-110px;width:130px;height:130px;background:var(--px);pointer-events:none;z-index:-1;
+  box-shadow:-130px 0 var(--px),-260px 0 var(--px),0 -130px var(--px),-130px -130px var(--px),0 -260px var(--px),-520px -130px var(--px),-390px -390px var(--px)}

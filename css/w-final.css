@@ -1,0 +1,46 @@
+/* 40 knowledge layers */
+.klayers{display:flex;flex-direction:column;align-items:center;gap:16px}
+.kl{border-radius:24px;padding:28px 44px;display:grid;grid-template-columns:600px 1fr;align-items:center;gap:30px;border:1.5px solid var(--card-border);
+  background:rgba(255,255,255,.05);transition:background .4s,border-color .4s,transform .4s var(--ease)}
+.kl h3{font-size:28px}
+.kl p{font-size:25px;line-height:34px;color:var(--muted)}
+.kl.base{background:linear-gradient(90deg,rgba(237,106,37,.35),rgba(237,106,37,.1));border-color:var(--accent)}
+.kl.base p{color:#fff}
+.kl:hover{transform:scale(1.02);border-color:var(--accent)}
+
+/* 41-42 term groups */
+.tgroups{display:grid;grid-template-columns:1fr 1fr;gap:30px 64px}
+.tgroup .gl{font-family:"Druk";font-size:22px;text-transform:uppercase;color:var(--g3);margin-bottom:14px}
+.tgroup .terms{display:flex;flex-wrap:wrap;gap:10px}
+.tgroup .term{height:46px;font-size:23px}
+.term.glow{border-color:var(--accent);background:rgba(237,106,37,.22);transform:scale(1.05)}
+
+/* 43 staircase */
+.stairs{display:flex;align-items:flex-end;gap:26px;height:600px;padding-left:40px}
+.stair{flex:1;position:relative;display:flex;flex-direction:column;justify-content:flex-end}
+.stair .stripe{height:var(--h);display:flex;align-items:flex-start;justify-content:center;padding-top:26px;font-family:"Druk";font-size:48px;
+  background:rgba(255,255,255,.1);transition:background .5s,height 1s var(--ease)}
+.stair.is-on .stripe{background:linear-gradient(180deg,var(--accent),var(--g1))}
+.stair .tx{font-size:27px;line-height:34px;margin-bottom:22px;padding-right:10px}
+
+/* 44 dates */
+.dates{position:relative;height:460px}
+.dates .axis{position:absolute;left:0;right:0;top:215px;height:4px;background:rgba(255,255,255,.2)}
+.dates .fill{position:absolute;left:0;top:215px;height:4px;width:var(--t,0%);background:var(--accent);transition:width 1.6s var(--ease) .8s}
+.dp{position:absolute;top:0;transform:translateX(-50%);text-align:center;width:420px}
+.dp .d{font-family:"Druk";font-size:56px;line-height:1;margin-bottom:26px}
+.dp .o{width:34px;height:34px;border-radius:50%;background:var(--bg);border:4px solid #fff;margin:118px auto 36px}
+.dp.main .o{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 0 rgba(237,106,37,.6);animation:ping 2s infinite}
+.dp.main .d{color:var(--accent)}
+.dp p{font-size:27px;line-height:36px}
+.today{position:absolute;top:137px;left:var(--t,0%);transform:translateX(-50%);text-align:center;display:flex;flex-direction:column-reverse;transition:left 1.6s var(--ease) .8s}
+.today span{margin:0 0 8px !important}
+.today i{display:block;width:4px;height:72px;margin:0 auto;background:var(--g3);border-radius:2px}
+.today span{display:block;margin-top:8px;font-size:20px;color:var(--g3);white-space:nowrap}
+.countdown{display:flex;align-items:baseline;gap:22px}
+.countdown .big{font-size:110px}
+
+/* 45 steps */
+.steps5{list-style:none;display:flex;flex-direction:column;gap:18px;max-width:1300px}
+.steps5 li{display:flex;align-items:center;gap:30px;padding:20px 30px;font-size:30px;line-height:40px}
+.steps5 li.contact{border-color:var(--accent);background:rgba(237,106,37,.12)}

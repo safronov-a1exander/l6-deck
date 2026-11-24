@@ -1,0 +1,114 @@
+/* Л2 · виджеты колоды: код, мостики, демо, три дерева, поток состояния */
+
+/* код */
+.code{background:rgba(0,0,0,.35);border:1.5px solid var(--card-border);border-radius:24px;padding:28px 36px;position:relative}
+.code pre{font-family:ui-monospace,"Cascadia Mono",Consolas,Menlo,monospace;font-size:24px;line-height:36px;color:#e8e8e8;white-space:pre;margin:0}
+.code.sm pre{font-size:21px;line-height:31px}
+.code .k{color:#ff9d66}      /* ключевые слова */
+.code .t{color:#fbc3a5}      /* типы */
+.code .s{color:#a8d88f}      /* строки */
+.code .c{color:rgba(255,255,255,.45)} /* комментарии */
+.code .hl{background:rgba(237,106,37,.22);border-radius:6px;box-shadow:0 0 0 4px rgba(237,106,37,.22);transition:background .5s,box-shadow .5s}
+.code .ok{color:#7bd88f}.code .bad{color:#ff6b6b}
+.code .cap{position:absolute;top:-16px;left:28px;background:var(--bg);padding:0 12px;font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* мостик к стеку Максима */
+.bridge{display:block;padding:20px 30px;border-radius:20px;border:1.5px dashed rgba(255,255,255,.3);font-size:26px;line-height:34px}
+.bridge b{display:inline-block;margin-right:20px;vertical-align:1px;font-family:"Druk";font-size:20px;letter-spacing:.04em;text-transform:uppercase;padding:8px 16px;border-radius:999px}
+.bridge.same b{background:#3ecf8e;color:#0e2a1d}
+.bridge.diff b{background:var(--accent);color:#fff}
+
+/* демо на стенде */
+.demo{display:flex;flex-direction:column;gap:18px}
+.demo .url{font-family:ui-monospace,Consolas,monospace;font-size:24px;color:var(--g3);display:flex;align-items:center;gap:14px}
+.demo .url::before{content:'';width:14px;height:14px;border-radius:50%;background:#3ecf8e;box-shadow:0 0 0 0 rgba(62,207,142,.6);animation:live 1.6s infinite}
+@keyframes live{70%{box-shadow:0 0 0 14px rgba(62,207,142,0)}100%{box-shadow:0 0 0 0 rgba(62,207,142,0)}}
+.demo ol{list-style:none;counter-reset:d;display:flex;flex-direction:column;gap:14px}
+.demo ol li{counter-increment:d;font-size:26px;line-height:36px;padding-left:56px;position:relative}
+.demo ol li::before{content:counter(d);position:absolute;left:0;top:0;width:38px;height:38px;border-radius:50%;background:var(--accent);font-family:"Druk";font-size:18px;display:grid;place-items:center}
+
+/* два симптома */
+.sym{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.sym .card{min-height:300px;display:flex;flex-direction:column;gap:22px}
+.chips{display:flex;gap:18px;align-items:center}
+.cnt{width:170px;height:150px;border-radius:20px;background:rgba(255,255,255,.07);border:1.5px solid var(--card-border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:transform .8s var(--ease)}
+.cnt .nm{font-size:22px;color:var(--muted)}.cnt .v{font-family:"Druk";font-size:54px;line-height:1}
+.cnt .nm{transition:opacity .35s}.cnt .nm.fade{opacity:0}
+.bb{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border-radius:10px;background:rgba(255,255,255,.08);font-size:20px;font-family:ui-monospace,Consolas,monospace;color:var(--muted)}
+.bb.hot{background:rgba(237,106,37,.3);color:#fff}
+.grid-b{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+/* поток: состояние вниз, намерения вверх */
+.flowv{display:grid;grid-template-columns:420px 1fr 420px;align-items:center;gap:0}
+.flowv .card{text-align:center;padding:40px 30px}
+.flowv svg{width:100%;height:260px}
+.flowv .lbl{font-size:24px;fill:#fff;font-family:Museo}
+.flowv path{fill:none;stroke-width:3}
+.flowv .dn{stroke:var(--accent)}.flowv .up{stroke:var(--g3);stroke-dasharray:10 10;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-20}}
+
+/* три дерева */
+.trees{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;position:relative}
+.tree3{border-radius:24px;padding:28px;background:var(--card);border:1.5px solid var(--card-border)}
+.tree3 h3{margin-bottom:8px}.tree3 .note{font-size:22px;line-height:30px;margin-bottom:18px}
+.tree3 ul{list-style:none;font-family:ui-monospace,Consolas,monospace;font-size:22px;line-height:40px}
+.tree3 li{padding-left:calc(var(--l,0)*28px);display:flex;gap:10px;align-items:center}
+.tree3 li .id{margin-left:auto;font-size:18px;color:var(--muted);transition:color .4s}
+.tree3.w li .id{color:var(--accent)}.tree3.w li .id.bump{animation:bump .5s var(--pop)}
+@keyframes bump{0%{transform:scale(1.5);opacity:.3}100%{transform:none;opacity:1}}
+.tree3.w{border-color:rgba(237,106,37,.6)}
+
+/* решение Element'а */
+.decide{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.decide .card{display:flex;flex-direction:column;gap:14px}
+.decide .q{font-weight:500;font-size:28px;line-height:36px;color:var(--g3)}
+.decide .res{font-size:26px;line-height:34px}
+.decide .card.is-on{border-color:var(--accent);box-shadow:0 0 40px rgba(237,106,37,.35)}
+
+/* ступени спуска */
+.descent{display:flex;flex-direction:column;gap:22px}
+.descent .card{display:grid;grid-template-columns:440px 1fr;gap:30px;align-items:center;padding:26px 34px}
+.descent .card:nth-child(2){margin-left:120px}.descent .card:nth-child(3){margin-left:240px}
+.descent h3{color:var(--accent)}
+.descent .p{font-size:26px}
+
+/* контраст */
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.swatch{border-radius:20px;height:190px;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:500}
+.swatch.a{background:#fff;color:#1b1b1b}.swatch.b{background:#fff;color:#e8e3e0}
+.ratio{font-family:"Druk";font-size:64px;margin-top:18px}
+.ratio.bad{color:#ff6b6b}
+
+/* ошибка в консоли */
+.err{background:rgba(255,90,79,.08);border:1.5px solid rgba(255,90,79,.5);border-radius:20px;padding:26px 32px;font-family:ui-monospace,Consolas,monospace;font-size:23px;line-height:34px;color:#ffb3ad}
+.err b{color:#ff6b6b;font-weight:600}
+.err .dim{opacity:.45}
+
+/* constraints */
+.cbox{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.cbox .frame{position:relative;height:300px;border:2px dashed rgba(255,255,255,.35);border-radius:16px;display:flex;align-items:center;justify-content:center}
+.cbox .kid{width:100px;height:100px;background:var(--accent);border-radius:12px;transition:all .9s var(--ease)}
+.cbox .tight .kid{width:100%;height:100%;border-radius:14px;opacity:.85}
+.cbox .cap{font-family:ui-monospace,Consolas,monospace;font-size:21px;color:var(--g3);margin-top:14px}
+.arrows{display:flex;gap:40px;justify-content:center;font-size:26px;margin-top:10px}
+.arrows span{display:flex;gap:12px;align-items:center}
+.arrows i{font-style:normal;font-family:"Druk";color:var(--accent);font-size:30px;animation:bob 1.6s ease-in-out infinite}
+.arrows span:nth-child(2) i{animation-direction:reverse}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* ПЗ2: команда */
+.cmd{font-family:ui-monospace,Consolas,monospace;font-size:24px;line-height:36px}
+
+/* живой стенд на демо-слайде: заглушка в слайде, окно поверх неё (js/stand.js) */
+.stand-slot{position:relative;height:100%;min-height:420px;border:2px solid rgba(237,106,37,.55);border-radius:20px;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:var(--muted);font-size:26px;text-align:center;padding:30px}
+.stand-slot code{font-size:24px}
+.demo-slide .body{display:flex;flex-direction:column;gap:18px}
+.demo-slide .steps{font-size:26px;line-height:34px;color:var(--muted)}
+.demo-slide .steps b{color:#fff;font-weight:500}
+.stand-frame{position:fixed;border:0;border-radius:24px;z-index:50;visibility:hidden;background:#fff;transform-origin:0 0}
+/* демо-слайд: компактная шапка, стенд на всю оставшуюся высоту */
+.slide.demo-slide .pill{display:none}
+.slide.demo-slide .title{font-size:44px;line-height:52px;margin-top:0}
+.slide.demo-slide .body{margin-top:16px}
+.slide.demo-slide .steps{font-size:24px;line-height:32px}
+.slide.demo-slide .stand-slot{flex:1;min-height:0}

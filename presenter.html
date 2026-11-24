@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><title>Ведущий · Л6</title>
+<style>
+@font-face{font-family:Museo;src:url(assets/fonts/MuseoSansCyrl_300.woff2) format("woff2");font-weight:300}
+@font-face{font-family:Museo;src:url(assets/fonts/MuseoSansCyrl_500.woff2) format("woff2");font-weight:500}
+@font-face{font-family:Druk;src:url(assets/fonts/DrukWideLCG_Medium.woff2) format("woff2")}
+*{box-sizing:border-box}
+body{margin:0;background:#1b1b1b;color:#fff;font:300 22px/1.55 Museo,Arial,sans-serif;display:grid;grid-template-rows:auto 1fr auto;height:100vh}
+header{display:flex;gap:24px;align-items:center;padding:14px 22px;border-bottom:1px solid rgba(255,255,255,.12)}
+.num{font:500 30px Druk,Arial;color:#ed6a25}
+.ttl{font:500 18px/1.3 Druk,Arial;text-transform:uppercase}
+.tm{margin-left:auto;font:500 26px Druk,Arial;color:#fbc3a5;cursor:pointer}
+main{overflow:auto;padding:20px 26px 40px}
+main p{margin:0 0 14px}
+main .cue{color:#ed6a25;font-style:italic;font-size:18px}
+main code{font:.85em ui-monospace,Consolas,monospace;color:#fbc3a5}
+footer{display:flex;gap:16px;align-items:center;padding:12px 22px;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);font-size:17px}
+footer b{color:#fff;font-weight:500}
+button{font:500 18px Museo;background:#2a2a2a;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:8px 18px;cursor:pointer}
+.big main{font-size:28px}
+</style></head><body>
+<header><span class="num" id="n">—</span><span class="ttl" id="t">Откройте колоду в соседнем окне</span><span class="tm" id="tm" title="клик — сброс">00:00</span></header>
+<main id="m"></main>
+<footer><button id="pv">←</button><button id="nx">→</button><span>Дальше: <b id="nt">—</b></span><span style="margin-left:auto">← → листают колоду · A — крупнее · клик по таймеру — сброс</span></footer>
+<script>
+const bus = new BroadcastChannel('l6-deck'), secs = {}, titles = {};
+let start = Date.now();
+fetch('speech.html?v=20261124060730').then(r => r.text()).then(h => {
+  const d = new DOMParser().parseFromString(h, 'text/html');
+  d.querySelectorAll('main h2').forEach(h2 => {
+    const k = +h2.id.slice(1); titles[k] = h2.textContent; let html = '', e = h2.nextElementSibling;
+    while (e && !/^H[12]$/.test(e.tagName)) { html += e.outerHTML; e = e.nextElementSibling; }
+    secs[k] = html;
+  });
+  bus.postMessage({ type: 'hello' });
+});
+bus.onmessage = ({ data: m }) => {
+  if (m.type !== 'slide') return;
+  const k = m.i + 1;
+  n.textContent = `${String(k).padStart(2, '0')} / ${m.total}`;
+  t.textContent = titles[k] || '';
+  document.getElementById('m').innerHTML = secs[k] || '<p class="cue">Речи для этого слайда нет</p>';
+  document.getElementById('m').scrollTop = 0;
+  nt.textContent = titles[k + 1] || 'конец';
+};
+nx.onclick = () => bus.postMessage({ type: 'next' });
+pv.onclick = () => bus.postMessage({ type: 'prev' });
+addEventListener('keydown', e => {
+  if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); bus.postMessage({ type: 'next' }); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); bus.postMessage({ type: 'prev' }); }
+  else if (e.key === 'a' || e.key === 'ф') document.body.classList.toggle('big');
+});
+tm.onclick = () => { start = Date.now(); };
+setInterval(() => { const s = Math.floor((Date.now() - start) / 1000); tm.textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; }, 1000);
+</script></body></html>

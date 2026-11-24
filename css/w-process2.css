@@ -1,0 +1,57 @@
+/* 30 stop cards */
+.prep{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:48px}
+.prep .term{height:58px;font-size:25px}
+.stops .card{min-height:330px;display:flex;flex-direction:column;gap:26px}
+.stops .card p{margin:0 !important}
+.oct{width:72px;height:72px;flex:none;background:var(--accent);display:grid;place-items:center;font-family:"Druk";font-size:15px;
+  clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);animation:octp 2.4s ease-in-out infinite}
+.stops .card:nth-child(2) .oct{animation-delay:.6s}.stops .card:nth-child(3) .oct{animation-delay:1.2s}.stops .card:nth-child(4) .oct{animation-delay:1.8s}
+@keyframes octp{0%,100%{transform:scale(1)}15%{transform:scale(1.15)}30%{transform:scale(1)}}
+
+/* 31 wall */
+.wall-d{position:relative;height:400px}
+.wall-d .side{position:absolute;top:40px;width:400px;height:320px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px}
+.wall-d .side svg{width:90px;height:90px;stroke:#fff;fill:none;stroke-width:4}
+.brick{position:absolute;left:820px;top:0;width:44px;height:400px;border-radius:8px;
+  background:repeating-linear-gradient(0deg,var(--accent) 0 26px,var(--bg) 26px 30px),var(--accent);box-shadow:0 0 50px rgba(237,106,37,.45)}
+.pass{position:absolute;left:440px;height:52px;padding:0 22px;border-radius:999px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.4);
+  display:flex;align-items:center;font-size:23px;white-space:nowrap;opacity:0}
+.play .pass.ok{animation:through 5s var(--ease) infinite}
+.play .pass.no{animation:bounce 5s var(--ease) infinite;border-color:#ff6b6b;color:#ffb3b3}
+@keyframes through{0%{opacity:0;transform:translateX(0)}10%{opacity:1}60%{transform:translateX(560px);opacity:1}75%,100%{transform:translateX(560px);opacity:0}}
+@keyframes bounce{0%{opacity:0;transform:translateX(0)}10%{opacity:1}35%{transform:translateX(150px)}45%{transform:translateX(90px)}50%{transform:translateX(120px)}75%,100%{transform:translateX(0);opacity:0}}
+.rules3 .card p{font-size:24px !important;line-height:34px !important;margin-top:0 !important}
+
+/* 32 decisions log */
+.dlog{font-family:ui-monospace,Menlo,monospace;font-size:22px;line-height:30px;padding:0;overflow:hidden}
+.dlog .r{display:grid;grid-template-columns:110px 130px 1fr;gap:12px;padding:18px 28px;border-top:1px solid var(--line);color:var(--muted);position:relative}
+.dlog .r:first-of-type{border-top:0}
+.dlog .r b{color:#fff;font-weight:500}
+.dlog .r.new{color:#fff;background:rgba(237,106,37,.12)}
+.dlog .r.new .t::after{content:"▍";color:var(--accent);animation:blink 1s steps(2) infinite}
+.dlog .r .lk{position:absolute;right:20px;top:18px;font-family:"Museo";font-size:18px;color:var(--muted)}
+
+/* 33 evidence package */
+.pkg .card{min-height:190px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.pkg .n{font-family:"Druk";font-size:30px;color:var(--accent)}
+.pkg .nm{font-size:27px;line-height:34px;font-weight:500;margin-top:14px}
+.pkg code{font-size:17px;color:var(--muted);margin-top:10px;display:block}
+.stamp{position:absolute;right:18px;top:18px;width:44px;height:44px;border-radius:50%;background:#3ecf8e;display:grid;place-items:center;color:#10251a;font-weight:700;font-size:24px;
+  transform:scale(0) rotate(-40deg);transition:transform .45s var(--pop)}
+.pkg .card.ok .stamp{transform:none}
+.fake{display:flex;align-items:center;gap:26px;margin-top:30px;border-color:#ff6b6b !important;padding:22px 32px}
+.fake .x{font-family:"Druk";font-size:40px;color:#ff6b6b}
+.fake.in{animation:shake .6s .6s}
+
+/* 34 checklist */
+.chk{columns:2;column-gap:56px;padding:30px 40px}
+.chk label{display:flex;gap:18px;align-items:flex-start;break-inside:avoid;padding:9px 0;font-size:23px;line-height:30px;cursor:pointer;transition:color .3s}
+.chk input{display:none}
+.chk .bx{width:28px;height:28px;flex:none;border:2px solid var(--muted);border-radius:7px;margin-top:1px;display:grid;place-items:center;transition:all .3s var(--pop)}
+.chk input:checked+.bx{background:var(--accent);border-color:var(--accent);transform:scale(1.1)}
+.chk input:checked+.bx::after{content:"✓";color:#fff;font-weight:700;font-size:19px}
+.chk label.bad .bx{border-color:#ff6b6b;background:rgba(255,107,107,.2)}
+.chk label.bad{color:#ffb3b3}
+.chkhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.chkhead .cnt{font-family:"Druk";font-size:40px}
+.chkhead .cnt.bad{color:#ff6b6b}
